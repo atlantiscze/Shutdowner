@@ -1,0 +1,80 @@
+﻿<Window x:Class="Shutdowner.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Shutdowner v1.4 by Jakub Štěpánek - www.stepanekjakub.cz" Height="250" Width="600" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" StateChanged="Window_StateChanged">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        
+        <!-- Hodiny -->
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBox Name="tbHours" Text="HH" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Stretch" TextAlignment="Center" IsReadOnly="True" Margin="10, 0"/>
+            <TextBox Name="tbMinutes" Text="MM" FontWeight="Bold" Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Stretch" TextAlignment="Center" IsReadOnly="True" Margin="10, 0"/>
+            <TextBox Name="tbSeconds" Text="SS" FontWeight="Bold" Grid.Row="0" Grid.Column="8" Grid.ColumnSpan="4" VerticalAlignment="Center" HorizontalAlignment="Stretch" TextAlignment="Center" IsReadOnly="True" Margin="10, 0"/>
+
+            <Button Content="+" Name="btnAddHour" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="1" Margin="5" Click="btnAddHour_Click" />
+            <Button Content="++" Name="btnAddHours" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Margin="5" Click="btnAddHours_Click" />
+            <Button Content="--" Name="btnRemoveHours" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="2" Grid.Row="1" Margin="5" Click="btnRemoveHours_Click" />
+            <Button Content="-" Name="btnRemoveHour" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="3" Grid.Row="1" Margin="5" Click="btnRemoveHour_Click" />
+
+            <Button Content="+" Name="btnAddMinute" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="4" Grid.Row="1" Margin="5" Click="btnAddMinute_Click" />
+            <Button Content="++" Name="btnAddMinutes" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="5" Grid.Row="1" Margin="5" Click="btnAddMinutes_Click" />
+            <Button Content="--" Name="btnRemoveMinutes" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="6" Grid.Row="1" Margin="5" Click="btnRemoveMinutes_Click" />
+            <Button Content="-" Name="btnRemoveMinute" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="7" Grid.Row="1" Margin="5" Click="btnRemoveMinute_Click" />
+
+            <Button Content="+" Name="btnAddSecond" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="8" Grid.Row="1" Margin="5" Click="btnAddSecond_Click" />
+            <Button Content="++" Name="btnAddSeconds" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="9" Grid.Row="1" Margin="5" Click="btnAddSeconds_Click" />
+            <Button Content="--" Name="btnRemoveSeconds" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="10" Grid.Row="1" Margin="5" Click="btnRemoveSeconds_Click" />
+            <Button Content="-" Name="btnRemoveSecond" FontWeight="Bold" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="11" Grid.Row="1" Margin="5" Click="btnRemoveSecond_Click" />
+        </Grid>
+        
+        <!-- Ovladani -->
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            
+            <Button Content="START" FontWeight="Bold" FontSize="20" Name="btnStartTimer" Grid.Column="0" Grid.Row="0" Margin="10" Grid.RowSpan="3" Click="btnStartTimer_Click" />
+            <Button Content="STOP" FontWeight="Bold" FontSize="20" Name="btnStopTimer" Grid.Column="0" Grid.Row="3" Margin="10" Grid.RowSpan="3" Click="btnStopTimer_Click" />
+            
+            <RadioButton Content="Standard shutdown" Grid.Column="1" Grid.Row="0" Name="rbShutdownRegular" VerticalAlignment="Center" Margin="10,2" IsChecked="True" Checked="rbShutdownRegular_Checked" />
+            <RadioButton Content="Forced shutdown" Grid.Column="1" Grid.Row="1" Name="rbShutdownForced" VerticalAlignment="Center" Margin="10,2" Checked="rbShutdownForced_Checked" />
+            <RadioButton Content="Reboot" Grid.Column="1" Grid.Row="2" Name="rbShutdownReboot" VerticalAlignment="Center" Margin="10,2" Checked="rbShutdownReboot_Checked" />
+            <RadioButton Content="Hibernate / Sleep mode" Grid.Column="1" Grid.Row="3" Name="rbShutdownSleep" VerticalAlignment="Center" Margin="10,2" Checked="rbShutdownSleep_Checked" />
+            
+            <CheckBox Content="Notify me one minute before shutdown." Grid.Column="1" Grid.Row="4" Name="cbSendNotifications" VerticalAlignment="Center" Margin="10,2" IsChecked="True" />
+            <CheckBox Content="Hide program when minimizing." Grid.Column="1" Grid.Row="5" Name="cbBetterMinimising" VerticalAlignment="Center" Margin="10,2" IsChecked="True" />
+
+        </Grid>
+    </Grid>
+</Window>
